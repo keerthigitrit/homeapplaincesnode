@@ -1,0 +1,59 @@
+{
+  "homeapplainces": [
+      {
+          "productId": "1",
+          "productName": "Led Light",
+          "Brand": "keerthi",
+          "SeriesOfBrand": "34",
+          "CurrentPrice": "14",
+          "Discount": "2",
+          "DeliveryCharges": "3",
+          "Ratings":"4",
+          "Reviews": "good"
+      },
+      {
+          "productId": "2",
+          "productName": "grinder",
+          "Brand": "pigeon",
+          "SeriesOfBrand": "5",
+          "CurrentPrice": "34",
+          "Discount": "10",
+          "DeliveryCharges": "0",
+          "Ratings":"5",
+          "Reviews": "worth it"
+      },
+      {
+          "productId": "3",
+          "productName": "waterbottle",
+          "Brand": "trail",
+          "SeriesOfBrand": "2",
+          "CurrentPrice": "4",
+          "Discount": "5",
+          "DeliveryCharges": "0",
+          "Ratings":"4",
+          "Reviews": "quality is good"
+      },
+      {
+          "productId": "4",
+          "productName": "AC",
+          "Brand": "Haier",
+          "SeriesOfBrand": "3",
+          "CurrentPrice": "74",
+          "Discount": "6",
+          "DeliveryCharges": "0",
+          "Ratings":"4",
+          "Reviews": "supeerr"
+      },
+      {
+          "productId": "5",
+          "productName": "Bed",
+          "Brand": "smooth",
+          "SeriesOfBrand": "4",
+          "CurrentPrice": "46",
+          "Discount": "25",
+          "DeliveryCharges": "0",
+          "Ratings":"2",
+          "Reviews": "quality is poor"
+      }
+  ]
+}

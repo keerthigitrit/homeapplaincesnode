@@ -1,0 +1,15 @@
+{
+ 
+  "dependencies": {
+    "mongodb": "^6.3.0"
+  },
+  "scripts": {
+    "dev": "node index.js",
+    "start": "node index.js"
+  }
+  
+}
+
+
+
+

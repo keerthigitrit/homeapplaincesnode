@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,500&family=Roboto+Condensed&display=swap"
+      rel="stylesheet"
+    />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Roboto Condensed", sans-serif;
+    }
+    body {
+      background-color: #f2f2f2;
+    }
+    @media (max-width: 500px) {
+      .header {
+        display: none;
+      }
+      .slide {
+        height: 800px;
+        width: 180px;
+        position: absolute;
+        background-color: #fff;
+        transition: 0.5s ease;
+        border-right: solid #009879 2px;
+      }
+      h1 {
+        color: #009879;
+        font-weight: 800;
+        text-align: right;
+        padding: 10px 0;
+        padding-right: 30px;
+        pointer-events: none;
+      }
+      .list2 li {
+        list-style: none;
+        height: 45px;
+      }
+      .list2 li a {
+        color: #011a41;
+        font-weight: 500;
+        height: 45px;
+        padding: 5px 0;
+        display: block;
+        text-transform: capitalize;
+        text-decoration: none;
+        transition: 0.2s ease-out;
+      }
+      .list2 li a i {
+        text-align: center;
+        width: 40px;
+      }
+      input {
+        display: none;
+        visibility: hidden;
+        /* -webkit-appearance: none; */
+      }
+      .toggle {
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        background-color: #fff;
+        z-index: 1;
+        cursor: pointer;
+        border-radius: 2px;
+        top: 20px;
+        left: 15px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      }
+      .toggle .common {
+        position: absolute;
+        height: 2px;
+        width: 20px;
+        background-color: #009879;
+        border-radius: 50px;
+        transition: 0.3s ease;
+      }
+      .toggle .top_line {
+        top: 30%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      .toggle .middle_line {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      .toggle .bottom_line {
+        top: 70%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      input:checked ~ .toggle .top_line {
+        left: 2px;
+        top: 14px;
+        width: 25px;
+        transform: rotate(45deg);
+      }
+      input:checked ~ .toggle .bottom_line {
+        left: 2px;
+        top: 14px;
+        width: 25px;
+        transform: rotate(-45deg);
+      }
+    
+      input:checked ~ .toggle .middle_line {
+        opacity: 0;
+      }
+      input:checked ~ .slide {
+        transform: translateX(-180px);
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+      }
+      .list2 li:hover a {
+        background-color: #009879;
+        color: #fff;
+      }
+      .main {
+        margin-left: 50px;
+        width: 100%;
+        background-color: white;
+        height: 800px;
+        padding: 10px;
+      }
+      input:checked ~ .main {
+        margin-left: 70px;
+      }
+    
+      .styled-table {
+        border-collapse: collapse;
+        font-size: 0.9em;
+        font-family: "Roboto Condensed", sans-serif;
+        width: 100%;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+      }
+    
+      .styled-table thead tr {
+        background-color: #009879;
+        color: #ffffff;
+        text-align: left;
+      }
+    
+      .styled-table th,
+      .styled-table td {
+        padding: 12px 15px;
+      }
+    
+      .styled-table tbody tr {
+        border-bottom: 1px solid #dddddd;
+      }
+    
+      .styled-table tbody tr:nth-of-type(even) {
+        background-color: #f3f3f3;
+      }
+    
+      .styled-table tbody tr:last-of-type {
+        border-bottom: 2px solid #009879;
+      }
+    
+      .styled-table tbody tr.active-row {
+        font-weight: bold;
+        color: #009879;
+      }
+    }
+    
+    @media (min-width: 501px) {
+      .slide {
+        display: none;
+      }
+      input {
+        display: none;
+      }
+      .header {
+        background-color: #009879;
+        height: 60px;
+        width: 100%;
+        position: fixed;
+      }
+      .header .list {
+        overflow: hidden;
+        list-style: none;
+        display: table;
+        table-layout: fixed;
+        width: 100%;
+        text-align: center;
+        background-color: #009879;
+      }
+      .header .list li {
+        display: table-cell;
+      }
+      .header .list li a {
+        display: block;
+        color: #fff;
+        font-weight: bold;
+        text-decoration: none;
+        margin-top: 20px;
+        padding-top: 20px;
+        padding-bottom: 10px;
+      }
+      .header .list li a:hover {
+        background-color: white;
+        color: #009879;
+        padding-top: 20px;
+        padding-bottom: 10px;
+      }
+      .header .list li a i {
+        text-align: center;
+        width: 30px;
+      }
+    
+      .styled-table {
+        margin-top: 10px;
+        border-collapse: collapse;
+        font-size: 0.9em;
+        font-family: "Roboto Condensed", sans-serif;
+        width: 100%;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+      }
+    
+      .styled-table thead tr {
+        background-color: #009879;
+        color: #ffffff;
+        text-align: left;
+      }
+    
+      .styled-table th,
+      .styled-table td {
+        padding: 12px 15px;
+      }
+    
+      .styled-table tbody tr {
+        border-bottom: 1px solid #dddddd;
+      }
+    
+      .styled-table tbody tr:nth-of-type(even) {
+        background-color: #f3f3f3;
+      }
+    
+      .styled-table tbody tr:last-of-type {
+        border-bottom: 2px solid #009879;
+      }
+    
+      .styled-table tbody tr.active-row {
+        font-weight: bold;
+        color: #009879;
+      }
+    
+      .menu {
+        padding: 10px;
+      }
+    
+      .down{
+        margin-top: 70px !important;
+      }
+    
+      section {
+        height: 100vh;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        text-decoration: uppercase;
+        background-color: #fff;
+      }
+      .about-1{
+        float: left;
+        width: 30%;
+        padding: 30px;
+        border: #009879 solid 1px;
+      }
+      .about-2{
+        float: right;
+        width: 68%;
+        padding: 30px;
+        border: #009879 solid 1px;
+        margin-left: 10px;
+      }
+      .about-1 img{
+    
+        width: 400px;
+        height: 400px;
+        border-radius: 50%;
+      }
+    
+      h1 {
+        color: #009879;
+        font-weight: 800;
+        text-align: center;
+        margin-bottom: 30px;
+      }
+      h2 {
+        color: #009879;
+        font-weight: 800;
+        text-align: left;
+        margin-bottom: 30px;
+      }
+      .education-1{
+        padding: 30px;
+      }
+      .experience-1{
+        padding: 30px;
+      }
+      .table{
+        width: 100%;
+        border: solid black 1px;
+        margin-top: 50px;
+      }
+      .table tr th{
+        min-width: 285px;
+        text-align: center;
+        border: solid black 1px;
+        height: 90px;
+        background-color: #009879;
+        color: white;
+      }
+      .table tr td{
+        min-width: 285px;
+        text-align: center;
+        border: solid black 1px;
+        height: 70px;
+      }
+      .table tr:hover{
+        background-color: #009879;
+        color: white;
+      }
+    
+      .project-1{
+        float: left;
+        width: 49%;
+        border: solid #009879 1px;
+        padding: 5px;
+      }
+      .project-2{
+        float: right;
+        width: 49%;
+        border: solid #009879 1px;
+        padding: 5px;
+      }
+    
+      .theme{
+        color: #009879;
+        font-size: 20px;
+      }
+      .heading{
+        background-color: #009879;
+        color: white;
+        padding: 10px;
+      }
+      #roles li{
+        font-size: 20px;
+      }
+    
+      .blogs-1{
+        width: 70%;
+        float: left;
+        padding: 5px;
+      }
+      .blogs-2{
+        width: 29%;
+        float: right;
+        padding: 5px;
+      }
+      .blogs-1 img{
+        width: 100%;
+      }
+      .icons{
+        margin-top: 250px;
+        margin-left: 120px;
+      }
+      .icons span i{
+        width: 50px;
+        height: 50px;
+      }
+    }
+  </style>
+  </head>
+  <body>
+    <div class="header">
+      <ul class="list">
+        <li>
+          <a href="#about"><i class="fa-solid fa-book"></i>About</a>
+        </li>
+        <li>
+          <a href="#education"><i class="fa-solid fa-school"></i>Education</a>
+        </li>
+        <li>
+          <a href="#project"><i class="fa-solid fa-chart-simple"></i>Project</a>
+        </li>
+        <li>
+          <a href="#experience"><i class="fa-solid fa-e"></i>Experience</a>
+        </li>
+        <li>
+          <a href="#blogs"><i class="fa-solid fa-blog"></i>Blogs</a>
+        </li>
+      </ul>
+    </div>
+    <label>
+      <input type="checkbox" />
+      <div class="toggle">
+        <span class="top_line common"></span>
+        <span class="middle_line common"></span>
+        <span class="bottom_line common"></span>
+      </div>
+      <div class="slide">
+        <h1>MENU</h1>
+        <ul class="list2">
+          <li>
+            <a href="#about"><i class="fa-solid fa-book"></i>About</a>
+          </li>
+          <li>
+            <a href="#education"><i class="fa-solid fa-school"></i>Education</a>
+          </li>
+          <li>
+            <a href="#project"><i class="fa-solid fa-chart-simple"></i></i>Project</a>
+          </li>
+          <li>
+            <a href="#experience"><i class="fa-solid fa-e"></i>Experience</a>
+          </li>
+          <li>
+            <a href="#blogs"><i class="fa-solid fa-blog"></i>Blogs</a>
+          </li>
+        </ul>
+      </div>
+    </label>
+    <div class="main">
+      <section id="about">
+        <div class="about-1 down">
+           <h1>Talapureddy , Sai Keerthi<br><small>Student ID : 45689M</small></h1> 
+           <img src="https://i.pinimg.com/originals/de/d4/d1/ded4d12e5cc821971af26bbe68a1df1a.jpg">
+           <h2>Contact Me : </h2>
+           <p><span><i class="fa-solid fa-phone"></i> : +1 (203) 507-7856</span><span style="float: right;"><i class="fa fa-envelope"></i> : saikeerthi@gmail.com</span></p>
+        </div>
+        <div class="about-2 down">
+            <h3 class="heading">My Biography : </h3>
+            <p>Gandhi's vision of an independent India based on religious pluralism was challenged in the early 1940s by a Muslim nationalism which demanded a separate homeland for Muslims within British India. In August 1947, Britain granted independence, but the British Indian Empire was partitioned into two dominions, a Hindu-majority India and a Muslim-majority Pakistan. As many displaced Hindus, Muslims, and Sikhs made their way to their new lands, religious violence broke out, especially in the Punjab and Bengal. Abstaining from the official celebration of independence, Gandhi visited the affected areas, attempting to alleviate distress. In the months following, he undertook several hunger strikes to stop the religious violence. The last of these was begun in Delhi on 12 January 1948 when he was 78. The belief that Gandhi had been too resolute in his defense of both Pakistan and Indian Muslims spread among some Hindus in India. Among these was Nathuram Godse, a militant Hindu nationalist from Pune, western India, who assassinated Gandhi by firing three bullets into his chest at an interfaith prayer meeting in Delhi on 30 January 1948. Gandhi's birthday, 2 October, is commemorated in India as Gandhi Jayanti, a national holiday, and worldwide as the International Day of Nonviolence. Gandhi is considered to be the Father of the Nation in post-colonial India. </p>
+        <p>Assuming leadership of the Indian National Congress in 1921, Gandhi led nationwide campaigns for easing poverty, expanding women's rights, building religious and ethnic amity, ending untouchability, and, above all, achieving swaraj or self-rule. Gandhi adopted the short dhoti woven with hand-spun yarn as a mark of identification with India's rural poor. He began to live in a self-sufficient residential community, to eat simple food, and undertake long fasts as a means of both introspection and political protest. Bringing anti-colonial nationalism to the common Indians, Gandhi led them in challenging the British-imposed salt tax with the 400 km (250 mi) Dandi Salt March in 1930 and in calling for the British to quit India in 1942. He was imprisoned many times and for many years in both South Africa and India.</p>
+        <p>Gandhi's vision of an independent India based on religious pluralism was challenged in the early 1940s by a Muslim nationalism which demanded a separate homeland for Muslims within British India. In August 1947, Britain granted independence, but the British Indian Empire was partitioned into two dominions, a Hindu-majority India and a Muslim-majority Pakistan. As many displaced Hindus, Muslims, and Sikhs made their way to their new lands, religious violence broke out, especially in the Punjab and Bengal. Abstaining from the official celebration of independence, Gandhi visited the affected areas, attempting to alleviate distress. In the months following, he undertook several hunger strikes to stop the religious violence. The last of these was begun in Delhi on 12 January 1948 when he was 78. The belief that Gandhi had been too resolute in his defense of both Pakistan and Indian Muslims spread among some Hindus in India. Among these was Nathuram Godse, a militant Hindu nationalist from Pune, western India, who assassinated Gandhi by firing three bullets into his chest at an interfaith prayer meeting in Delhi on 30 January 1948. Gandhi's birthday, 2 October, is commemorated in India as Gandhi Jayanti, a national holiday, and worldwide as the International Day of Nonviolence. Gandhi is considered to be the Father of the Nation in post-colonial India. </p>
+    </div>
+      </section>
+
+      <section id="education">
+        <div class="education-1 down">
+            <h3 class="heading">Overview : </h3>
+            <p>Assuming leadership of the Indian National Congress in 1921, Gandhi led nationwide campaigns for easing poverty, expanding women's rights, building religious and ethnic amity, ending untouchability, and, above all, achieving swaraj or self-rule. Gandhi adopted the short dhoti woven with hand-spun yarn as a mark of identification with India's rural poor. He began to live in a self-sufficient residential community, to eat simple food, and undertake long fasts as a means of both introspection and political protest. Bringing anti-colonial nationalism to the common Indians, Gandhi led them in challenging the British-imposed salt tax with the 400 km (250 mi) Dandi Salt March in 1930 and in calling for the British to quit India in 1942. He was imprisoned many times and for many years in both South Africa and India.</p>
+            <table class="table">
+                <tr>
+                    <th>Standard</th>
+                    <th>Institution</th>
+                    <th>Start Year</th>
+                    <th>End Year</th>
+                    <th>Grade/Percentage</th>
+                </tr>
+                <tr>
+                    <td>SSC</td>
+                    <td>Sri Chaitanya Techno School</td>
+                    <td>2011</td>
+                    <td>2012</td>
+                    <td>6.8GPA</td>
+                </tr>
+                <tr>
+                    <td>SSC</td>
+                    <td>Sri Chaitanya Techno School</td>
+                    <td>2011</td>
+                    <td>2012</td>
+                    <td>6.8GPA</td>
+                </tr>
+                <tr>
+                    <td>SSC</td>
+                    <td>Sri Chaitanya Techno School</td>
+                    <td>2011</td>
+                    <td>2012</td>
+                    <td>6.8GPA</td>
+                </tr>
+            </table>
+        </div>
+      </section>
+
+      <section id="project">
+        <div class="project-1 down">
+            <h3 class="heading">Project : 1</h3>
+           <div style="padding: 10px;">
+            <p class="theme"><span style="min-width: 150px;">Project Name :</span> <span style="color: black;">Delivery Portal.</span></p>
+           <p class="theme"><span style="min-width: 150px;">Role : </span><span style="color: black;">Developer/Team Member</span></p>
+           <p class="theme"><span style="min-width: 150px;">Methodology : </span><span style="color: black;">Agile Scrum</span></p>
+           <p class="theme"><span style="min-width: 150px;">IDE Tools : </span><span style="color: black;">Sublime Text / Visual Studio Code</span></p>
+           <p class="theme"><span style="min-width: 150px;">Technical Environment : </span><span style="color: black;">Angular 2 and above, Bootstrap, HTML5, CSS 3.</span></p>
+            <p class="theme"><span style="min-width: 150px;">Description : </span><span style="color: black;"> Food ordering system is a process in which one can order various foods and
+             beverages from some local restaurant and hotels through the use of internet, just by sitting
+             at home or any place. And the order is delivered to the told location.</span></p>
+             <p class="theme">Roles & Responsibilities : <br>
+                <ul style="margin-left: 50px;" id="roles">
+                    <li>Involved in the functional discussions and understanding the requirements</li>
+                    <li>Writing unit test cases while developing the code</li>
+                    <li>Development of various user interfaces using Html, Typescript, Bootstrap,
+                        CSS as per therequirements</li>
+                    <li>Used various components and developed various user stories as per the
+                        requirements</li>
+                    <li>Developed various forms and implemented their validations</li>
+                    <li>Used GitHub for application code repository.</li>
+                    <li>Bug fixing in the development phase as per the prototypes.</li>
+                    <li>Used Webpack and npm for the application build and installing the
+                        dependencies as per therequirements</li>
+                </ul>
+            </p> 
+           </div>
+        </div>
+        <div class="project-2 down">
+            <h3 class="heading">Project : 2</h3>
+            <div style="padding: 10px;">
+             <p class="theme"><span style="min-width: 150px;">Project Name :</span> <span style="color: black;">Payment Engine - Toyota & Lexus.</span></p>
+            <p class="theme"><span style="min-width: 150px;">Role : </span><span style="color: black;">Developer/Team Member</span></p>
+            <p class="theme"><span style="min-width: 150px;">Methodology : </span><span style="color: black;">Agile Scrum</span></p>
+            <p class="theme"><span style="min-width: 150px;">IDE Tools : </span><span style="color: black;">Sublime Text / Visual Studio Code</span></p>
+            <p class="theme"><span style="min-width: 150px;">Technical Environment : </span><span style="color: black;">Angular, Node.JS, MongoDB, Typescript, Bootstrap,
+                Html, CSS, RESTful Webservices, Angular CLI, VSC,
+                npm.</span></p>
+             <p class="theme"><span style="min-width: 150px;">Description : </span><span style="color: black;"> Payment Engine prepares the final amount to be paid after the selection of product. This
+                payment engine was designed only for dealers. After dealer configuration, dealer can set
+                the prices and profitsfor products which also includes third party products. It also
+                includes protection of products and various discounts. Lease settings, Offer Markup,
+                Protection products, auditing and dealer campaigns are the major web pages in this
+                Payment Engine.</span></p>
+            <p class="theme">Roles & Responsibilities : <br>
+                <ul style="margin-left: 50px;" id="roles">
+                    <li>Involved in the functional discussions and understanding the requirements</li>
+                    <li>Writing unit test cases while developing the code</li>
+                    <li>Development of various user interfaces using Html, Typescript, Bootstrap,
+                        CSS as per therequirements</li>
+                    <li>Used various components and developed various user stories as per the
+                        requirements</li>
+                    <li>Developed various forms and implemented their validations</li>
+                    <li>Used GitHub for application code repository.</li>
+                    <li>Bug fixing in the development phase as per the prototypes.</li>
+                    <li>Used Webpack and npm for the application build and installing the
+                        dependencies as per therequirements</li>
+                </ul>
+            </p>    
+            </div>
+        </div>
+      </section>
+
+      <section id="experience">
+        <div class="education-1 down">
+            <h3 class="heading">Overview : </h3>
+            <p>Assuming leadership of the Indian National Congress in 1921, Gandhi led nationwide campaigns for easing poverty, expanding women's rights, building religious and ethnic amity, ending untouchability, and, above all, achieving swaraj or self-rule. Gandhi adopted the short dhoti woven with hand-spun yarn as a mark of identification with India's rural poor. He began to live in a self-sufficient residential community, to eat simple food, and undertake long fasts as a means of both introspection and political protest. Bringing anti-colonial nationalism to the common Indians, Gandhi led them in challenging the British-imposed salt tax with the 400 km (250 mi) Dandi Salt March in 1930 and in calling for the British to quit India in 1942. He was imprisoned many times and for many years in both South Africa and India.</p>
+            <table class="table">
+                <tr>
+                    <th>Company Name</th>
+                    <th>Duration in Months</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Total Experience</th>
+                </tr>
+                <tr>
+                    <td>SSC</td>
+                    <td>Sri Chaitanya Techno School</td>
+                    <td>2011</td>
+                    <td>2012</td>
+                    <td>6.8GPA</td>
+                </tr>
+                <tr>
+                    <td>SSC</td>
+                    <td>Sri Chaitanya Techno School</td>
+                    <td>2011</td>
+                    <td>2012</td>
+                    <td>6.8GPA</td>
+                </tr>
+                <tr>
+                    <td>SSC</td>
+                    <td>Sri Chaitanya Techno School</td>
+                    <td>2011</td>
+                    <td>2012</td>
+                    <td>6.8GPA</td>
+                </tr>
+            </table>
+        </div>
+      </section>
+      <section id="blogs">
+        <div class="blogs-1 down">
+<img src="https://www.free-css.com/assets/files/free-css-templates/preview/page283/bloscot/assets/images/img-8.png">
+        </div>
+        <div class="blogs-2 down">
+            <h3 class="heading">Connect & Follow</h3>
+            <div class="icons">
+                <span><i class="fa-brands fa-square-facebook fa-2xl theme"></i></span>
+            <span><i class="fa-brands fa-square-x-twitter fa-2xl theme"></i></span>
+            <span><i class="fa-brands fa-linkedin-in fa-2xl theme"></i></span>
+            <span><i class="fa-brands fa-square-instagram fa-2xl theme"></i></span>
+            </div>
+            <div>
+                <p><span class="theme">Post By :</span> 09/06/2045</p><br>
+               <p style="font-size: 20px;"> Most Awesome Blue Lake With Snow
+                River</p><br>
+               <p style="font-size: 20px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis</p>
+               <a href="#" class="heading" style="float: right;margin-top: 20px;">Read More..</a>
+            </div>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>
